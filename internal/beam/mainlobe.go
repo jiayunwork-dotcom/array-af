@@ -43,7 +43,7 @@ func AnalyzeMainlobe(w geometry.Wave) Mainlobe {
 	visible := cos >= -1 && cos <= 1
 	c := geometry.Clamp(cos, -1, 1)
 	return Mainlobe{
-		AngleDeg: geometry.RadToDeg(math.Acos(c)),
+		AngleDeg: applyML(geometry.RadToDeg(math.Acos(c))),
 		Visible:  visible,
 		CosTheta: cos,
 	}

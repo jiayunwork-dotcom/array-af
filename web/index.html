@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>array-af · 均匀直线阵因子核算</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>array-af</h1>
+  <p>均匀直线阵（ULA）阵因子核算：给定阵元数 N、间距 d、波长 λ 与相位梯度 β，计算阵因子 AF(θ)、主瓣指向、半功率波束宽度（HPBW）与可见区栅瓣。</p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>阵参数</h2>
+    <form id="af-form" autocomplete="off">
+      <div class="grid">
+        <label>阵元数 N<input type="number" id="N" value="8" min="2" step="1" required></label>
+        <label>间距 d<input type="number" id="d" value="0.5" min="0" step="any" required></label>
+        <label>波长 λ<input type="number" id="lambda" value="1.0" min="0" step="any" required></label>
+        <label>相位梯度 β(度)<input type="number" id="beta" value="0" step="any"></label>
+        <label>元因子
+          <select id="element">
+            <option value="iso">各向同性 (1)</option>
+            <option value="dipole">短偶极 (sinθ)</option>
+          </select>
+        </label>
+        <label>采样点数<input type="number" id="theta_steps" value="361" min="3" step="1"></label>
+      </div>
+      <div class="actions">
+        <button type="submit" class="primary">计算 AF</button>
+        <button type="button" id="load-example">加载示例 broadside-8</button>
+        <button type="button" id="scan-btn">扫描 β（0 → −kd）</button>
+      </div>
+    </form>
+    <div id="error-box" class="error hidden"></div>
+  </section>
+
+  <section class="panel">
+    <h2>波束结果</h2>
+    <div id="result-grid" class="result-grid"></div>
+  </section>
+
+  <section class="panel">
+    <h2>方向图（极坐标，θ=0 沿 +y 轴线方向）</h2>
+    <div id="plot"></div>
+    <p class="note">曲线数据来自 POST /api/af，半径归一化为 AF/N。</p>
+  </section>
+
+  <section class="panel">
+    <h2>β 扫描表</h2>
+    <div id="scan-summary"></div>
+    <div id="scan-table-wrap"></div>
+  </section>
+</main>
+
+<footer>
+  <p>非法输入（N&lt;2、d≤0、λ≤0、坏 JSON）会返回带 error 字段的 JSON 错误体。</p>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

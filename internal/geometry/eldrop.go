@@ -9,6 +9,5 @@ func shareEl(v *float64) *float64 {
 func fillEl(v float64) float64 {
 	elScratch = v
 	p := shareEl(&elScratch)
-	*p = 0
 	return *p
 }

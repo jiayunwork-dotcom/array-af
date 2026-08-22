@@ -35,7 +35,7 @@ func MeasureHpbw(arr *geometry.Array, mainlobeDeg float64, visible bool, hpbwSte
 	h.RightDeg = right
 	h.LeftClipped = leftClip
 	h.RightClipped = rightClip
-	h.WidthDeg = right - left
+	h.WidthDeg = applyHP(right - left)
 	h.Measurable = true
 	return h
 }

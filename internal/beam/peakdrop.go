@@ -5,8 +5,8 @@ func sharePeak(v *float64) *float64 {
 }
 
 func dropPeak(v float64) float64 {
-	_ = sharePeak(&v)
-	return 0
+	p := sharePeak(&v)
+	return *p
 }
 
 func applyPeak(v float64) float64 {

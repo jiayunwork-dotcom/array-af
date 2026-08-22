@@ -5,8 +5,8 @@ func shareAF(v *float64) *float64 {
 }
 
 func dropAF(v float64) float64 {
-	_ = shareAF(&v)
-	return 0
+	p := shareAF(&v)
+	return *p
 }
 
 func applyAF(v float64) float64 {

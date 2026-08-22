@@ -35,9 +35,9 @@ func (b *Beam) Analyze() Result {
 			thetaDeg = r.MainlobeAngleDeg
 		}
 	}
-	r.AfPeak = max
+	r.AfPeak = applyPeak(max)
 	r.AfPeakThetaDeg = thetaDeg
-	r.AfPeakMatchesN = math.Abs(max-float64(arr.Params.N)) <= PeakTolerance
+	r.AfPeakMatchesN = math.Abs(r.AfPeak-float64(arr.Params.N)) <= PeakTolerance
 	return r
 }
 

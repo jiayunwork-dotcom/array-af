@@ -15,11 +15,11 @@ const PsiZeroTol = 1e-12
 func ArrayFactor(n int, psi float64) float64 {
 	half := psi / 2
 	if math.Abs(math.Sin(half)) < PsiZeroTol {
-		return float64(n)
+		return applyAF(float64(n))
 	}
 	num := math.Sin(float64(n) * half)
 	den := math.Sin(half)
-	return math.Abs(num / den)
+	return applyAF(math.Abs(num / den))
 }
 
 // ArrayFactorNeg 计算 AF 的符号版本（带阵列因子的相位符号），

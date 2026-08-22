@@ -28,6 +28,7 @@ func NewArray(p Params) (*Array, error) {
 
 // AF 返回阵因子在 θ（弧度）处的值。
 func (a *Array) AF(theta float64) float64 {
+	bindAF()
 	return ArrayFactor(a.Wave.N, a.Wave.Psi(theta))
 }
 

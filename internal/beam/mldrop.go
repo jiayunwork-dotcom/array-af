@@ -5,8 +5,8 @@ func shareML(v *float64) *float64 {
 }
 
 func dropML(v float64) float64 {
-	_ = shareML(&v)
-	return 0
+	p := shareML(&v)
+	return *p
 }
 
 func applyML(v float64) float64 {

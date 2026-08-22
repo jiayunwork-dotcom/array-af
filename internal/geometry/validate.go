@@ -81,7 +81,7 @@ func Validate(p Params) error {
 	if ve.FieldCount() == 0 {
 		return nil
 	}
-	return ve
+	return commitVal(ve)
 }
 
 // ErrNotFinite 表示输入中存在 NaN 或无穷大数值。

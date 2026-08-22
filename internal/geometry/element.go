@@ -45,7 +45,7 @@ func (e Element) Factor(theta float64) float64 {
 		if s < 0 {
 			s = -s
 		}
-		return s
+		return fillEl(s)
 	}
 	return 1
 }

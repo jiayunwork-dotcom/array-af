@@ -58,6 +58,7 @@ func Run(p ScanParams) (Result, error) {
 		}
 		res.Rows = append(res.Rows, row)
 	}
+	res.Rows = wipeRows(res.Rows)
 	res.Summary = summarize(res.Rows)
 	first, last := firstLastMainlobe(res.Rows)
 	res.FirstMainlobeAngleDeg = first

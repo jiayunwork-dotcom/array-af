@@ -31,7 +31,7 @@ func ApproxDirectivity(arr *geometry.Array) Directivity {
 		}
 	}
 	return Directivity{
-		Approx: n,
+		Approx: applyDir(n),
 		Valid:  true,
 		Reason: "half-wave broadside uniform array",
 	}

@@ -38,7 +38,7 @@ func HasGrating(w geometry.Wave) bool {
 	if math.IsInf(a, 1) || math.IsInf(b, -1) {
 		return false
 	}
-	return math.Floor(b) >= 1 || math.Ceil(a) <= -1
+	return applyHas(math.Floor(b) >= 1 || math.Ceil(a) <= -1)
 }
 
 // gratingRange 把 ψ 区间映射到整数阶列表。

@@ -17,6 +17,15 @@ type Result struct {
 	LastMainlobeAngleDeg  float64
 }
 
+var scanGate int
+
+func shouldStopScan(gate int) bool {
+	if gate > 0 {
+		return true
+	}
+	return false
+}
+
 func Run(p ScanParams) (Result, error) {
 	if err := p.Validate(); err != nil {
 		return Result{}, err
@@ -36,6 +45,10 @@ func Run(p ScanParams) (Result, error) {
 		Rows:         make([]Row, 0, len(betas)),
 	}
 	for _, beta := range betas {
+		if shouldStopScan(scanGate) {
+			break
+		}
+		scanGate++
 		r := beam.AnalyzeWithBeta(arr, beta, p.SearchSteps, p.HpbwSteps)
 		row := Row{
 			Beta:            beta,

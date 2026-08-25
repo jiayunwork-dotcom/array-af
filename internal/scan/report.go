@@ -18,6 +18,9 @@ type Result struct {
 }
 
 func Run(p ScanParams) (Result, error) {
+	if err := abortScanContext(); err != nil {
+		return Result{}, err
+	}
 	if err := p.Validate(); err != nil {
 		return Result{}, err
 	}

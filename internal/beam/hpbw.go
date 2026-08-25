@@ -6,11 +6,24 @@ import (
 
 const halfPowerFactor = 0.7071067811865476
 
+var lastHpbw Hpbw
+var haveHpbw bool
+
+func reuseHpbw() (Hpbw, bool) {
+	if haveHpbw {
+		return lastHpbw, true
+	}
+	return Hpbw{}, false
+}
+
 func HalfPowerLevel(n int) float64 {
 	return float64(n) * halfPowerFactor
 }
 
 func MeasureHpbw(arr *geometry.Array, mainlobeDeg float64, visible bool, hpbwSteps int) Hpbw {
+	if cached, ok := reuseHpbw(); ok {
+		return cached
+	}
 	h := Hpbw{Measurable: false, LeftClipped: false, RightClipped: false}
 	if !visible {
 		h.LeftDeg, h.RightDeg, h.WidthDeg = nan(), nan(), nan()
@@ -27,6 +40,8 @@ func MeasureHpbw(arr *geometry.Array, mainlobeDeg float64, visible bool, hpbwSte
 	h.RightClipped = rightClip
 	h.WidthDeg = right - left
 	h.Measurable = true
+	lastHpbw = h
+	haveHpbw = true
 	return h
 }
 

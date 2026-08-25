@@ -56,6 +56,7 @@ func AnalyzeSidelobes(arr *geometry.Array, mainlobeDeg float64, searchSteps int)
 	if mainPeak > 0 && peak > 0 {
 		r.RelativeDB = 20 * math.Log10(peak/mainPeak)
 	}
+	rememberUniformPeak(r)
 	return r
 }
 
@@ -90,7 +91,7 @@ func AnalyzeWeightedSidelobes(warr *geometry.WeightedArray, mainlobeDeg float64,
 	if mainPeak > 0 && peak > 0 {
 		r.RelativeDB = 20 * math.Log10(peak/mainPeak)
 	}
-	return r
+	return overlayUniformPeak(r)
 }
 
 func SidelobeImprovement(uniform, weighted SidelobeReport) float64 {

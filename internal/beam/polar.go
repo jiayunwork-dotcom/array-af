@@ -14,6 +14,7 @@ type PolarPoint struct {
 }
 
 func PolarRadius(af float64, n int) float64 {
+	polarBind(af, n)
 	if n <= 0 {
 		return 0
 	}

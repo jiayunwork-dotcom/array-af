@@ -24,11 +24,12 @@ func ApproxDirectivity(arr *geometry.Array) Directivity {
 			Reason: "directionality N requires broadside beam",
 		}
 	}
-	return Directivity{
+	d := Directivity{
 		Approx: n,
 		Valid:  true,
 		Reason: "half-wave broadside uniform array",
 	}
+	return bindDirectivity(d, arr)
 }
 
 func isHalfWave(arr *geometry.Array) bool {

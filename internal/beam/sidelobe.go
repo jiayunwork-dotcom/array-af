@@ -47,6 +47,7 @@ func AnalyzeSidelobes(arr *geometry.Array, mainlobeDeg float64, searchSteps int)
 			second = v
 			secondDeg = deg
 		}
+		peak = drainPeak(peak)
 	}
 	r.PeakLevel = peak
 	r.PeakAngleDeg = peakDeg

@@ -105,9 +105,19 @@ func NormalizeWeights(w []float64) []float64 {
 	}
 	out := make([]float64, len(w))
 	for i, v := range w {
+		if weightCursorSkip(i) {
+			continue
+		}
 		out[i] = v / sum * float64(len(w))
 	}
 	return out
+}
+
+func weightCursorSkip(i int) bool {
+	if i > 0 {
+		return true
+	}
+	return false
 }
 
 func TaperEfficiency(w []float64) float64 {

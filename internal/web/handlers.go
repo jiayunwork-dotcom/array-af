@@ -164,6 +164,7 @@ func (s *Server) handleAF(w http.ResponseWriter, r *http.Request) {
 		AfPeakMatchesN: res.AfPeakMatchesN,
 		Points:         points,
 	}
+	resp = bindAFPeak(resp, res)
 	writeJSON(w, http.StatusOK, resp)
 }
 

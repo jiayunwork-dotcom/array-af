@@ -71,7 +71,7 @@ func Validate(p Params) error {
 	if ve.FieldCount() == 0 {
 		return nil
 	}
-	return ve
+	return bindValidate(ve)
 }
 
 var ErrNotFinite = errors.New("input contains NaN or Inf")
